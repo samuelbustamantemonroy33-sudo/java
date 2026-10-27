@@ -1,6 +1,44 @@
+import java.util.Scanner;
+
 public class ArcadeChallenge {
     public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.println("=== Arcade Challenge ===");
+                System.out.println("1. Iniciar sesión");
+                System.out.println("2. Salir");
+                System.out.println("Cuenta de prueba: laura / arcade123");
+                System.out.print("Elige una opción: ");
 
+                String opcion = scanner.nextLine().trim();
+                if ("1".equals(opcion)) {
+                    System.out.print("Usuario: ");
+                    String usuario = scanner.nextLine().trim();
+                    System.out.print("Contraseña: ");
+                    String contraseña = scanner.nextLine();
+
+                    if (validarCredenciales(usuario, contraseña)) {
+                        System.out.println("Inicio de sesión exitoso. ¡Bienvenido, " + usuario + "!");
+                        mostrarArcade();
+                        return;
+                    }
+
+                    System.out.println("Usuario o contraseña incorrectos. Inténtalo de nuevo.\n");
+                } else if ("2".equals(opcion)) {
+                    System.out.println("Hasta luego.");
+                    return;
+                } else {
+                    System.out.println("Opción no válida. Elige 1 o 2.\n");
+                }
+            }
+        }
+    }
+
+    private static boolean validarCredenciales(String usuario, String contraseña) {
+        return "laura".equalsIgnoreCase(usuario) && "arcade123".equals(contraseña);
+    }
+
+    private static void mostrarArcade() {
         // RETO 1
         String[] nom = {"Laura", "Andrés", "Camila"};
         int[] edad = {19, 22, 20};
